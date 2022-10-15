@@ -49,13 +49,13 @@ function List({ coin }) {
   return (
     <a href={`/coin?${coin.id}`} className="list-wrapper">
       <tr className="list-wrapper">
-        <td>
+        <td className="image-td">
           <img src={coin.image} className="list-logo" />
         </td>
 
-        <td style={{ minWidth: 100, width: 150 }}>
+        <td style={{ maxWidth: 150, width: 100 }}>
           <p className="symbol td-text">{coin.symbol}-USD</p>
-          <p className="name td-text" style={{ marginBottom: 0 }}>
+          <p className="list-name" style={{ marginBottom: 0 }}>
             {coin.name}
           </p>
         </td>
@@ -64,7 +64,7 @@ function List({ coin }) {
             {trend.sign + coin.price_change_percentage_24h.toFixed(2) + " %"}
           </div>
         </td>
-        <td className="min">
+        <td style={{ width: 100 }}>
           {onGoingTrend === "up" ? (
             <TrendingUpRoundedIcon
               fontSize="large"
