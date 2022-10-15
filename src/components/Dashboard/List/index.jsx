@@ -50,7 +50,7 @@ function List({ coin }) {
     <a href={`/coin?${coin.id}`} className="list-wrapper">
       <tr className="list-wrapper">
         <td className="image-td">
-          <img src={coin.image} className="list-logo" />
+          <img src={coin.image} className="list-logo" alt="crypto-logo" />
         </td>
 
         <td style={{ maxWidth: 150, width: 100 }}>
