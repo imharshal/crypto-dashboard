@@ -14,7 +14,7 @@ function CoinPage() {
   console.log(searchParams);
 
   const [data, setData] = useState();
-  const [dates, setDates] = useState([]);
+  //   const [dates, setDates] = useState([]);
   const [loading, setLoading] = useState(true);
   const [loadingChart, setLoadingChart] = useState(true);
   const [coin, setCoin] = useState({});
@@ -43,7 +43,7 @@ function CoinPage() {
     ],
   });
 
-  const [prices, setPrices] = useState([]);
+  //   const [prices, setPrices] = useState([]);
 
   const today = new Date();
   const priorDate = new Date(new Date().setDate(today.getDate() - days));
@@ -58,12 +58,6 @@ function CoinPage() {
     }
     return a;
   };
-
-  useEffect(() => {
-    if (searchParams) {
-      getData();
-    }
-  }, [searchParams]);
 
   const getData = async () => {
     const API_URL = `https://api.coingecko.com/api/v3/coins/${searchParams}`;
@@ -91,7 +85,7 @@ function CoinPage() {
       return;
     }
 
-    setPrices(prices_data.data.prices);
+    // setPrices(prices_data.data.prices);
 
     var dates_2 = getDaysArray(priorDate, today);
 
@@ -126,6 +120,12 @@ function CoinPage() {
     });
   };
 
+  useEffect(() => {
+    if (searchParams) {
+      getData();
+    }
+  }, [searchParams]);
+
   const handleChange = async (event) => {
     setDays(event.target.value);
     const API_URL2 = `https://api.coingecko.com/api/v3/coins/${data.id}/market_chart?vs_currency=usd&days=${event.target.value}&interval=daily`;
@@ -139,7 +139,7 @@ function CoinPage() {
       return;
     }
 
-    setPrices(prices_data.data.prices);
+    // setPrices(prices_data.data.prices);
 
     const priorDate_2 = new Date(
       new Date().setDate(today.getDate() - event.target.value)
