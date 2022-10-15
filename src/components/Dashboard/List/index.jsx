@@ -53,13 +53,13 @@ function List({ coin }) {
           <img src={coin.image} className="list-logo" />
         </td>
 
-        <td>
+        <td style={{ minWidth: 100, width: 150 }}>
           <p className="symbol td-text">{coin.symbol}-USD</p>
           <p className="name td-text" style={{ marginBottom: 0 }}>
             {coin.name}
           </p>
         </td>
-        <td>
+        <td style={{ width: 100 }}>
           <div className={`list-change ${trend.class}`}>
             {trend.sign + coin.price_change_percentage_24h.toFixed(2) + " %"}
           </div>
