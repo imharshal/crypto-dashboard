@@ -1,96 +1,166 @@
-.list-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    gap: 1rem;
-}
+    .list-wrapper {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: start;
+        width: 100%;
+        gap: 1rem;
+        color: var(--white);
 
-.list-logo {
-    max-width: 50px;
-}
-
-.min {
-    min-width: 18%;
-    padding: 0rem 2rem;
-}
-
-.name2 {
-    font-size: 1.2rem;
-    color: var(--white);
-}
-
-.image-td {
-    width: fit-content;
-    margin-right: 2rem;
-}
-
-.td-volume-mobile {
-    display: none;
-}
-
-@media only screen and (max-width: 1100px) {
-    .list-logo {
-        width: 40px !important;
     }
 
-    .td-text {
-        font-size: 80%;
+    td {
+        text-align: start;
     }
 
-    .td-chips {
-        min-width: fit-content;
+    td.small {
+        max-width: 100px;
+        text-align: left;
     }
 
-    .td-chip-flex {
-        margin-right: 1rem;
-    }
-}
-
-@media only screen and (max-width: 800px) {
-    .list-logo {
-        width: 30px !important;
+    .list-trending-icon {
+        font-size: 2rem !important;
+        margin: 0;
+        margin-left: 1rem;
+        opacity: .9;
     }
 
-    .td-chip-flex {
-        gap: 0.5rem;
+    tr {
+        border-bottom: 1px solid rgba(256, 256, 256, .1);
+        padding: 10px 0;
     }
 
-    .min {
-        min-width: fit-content;
-        padding: 0rem 1rem;
+    tr:hover {
+        background-color: rgba(0, 0, 0, 0.5);
     }
 
-    .td-icon,
-    .td-cap {
-        display: none !important;
+    .list-change {
+        border: 1px solid;
+        border-radius: 10px;
+        display: inline;
+        padding: 0.1rem .4rem;
+        font-size: .8rem;
+        margin-left: .5rem;
+        opacity: .9;
+        font-weight: 600;
     }
 
-    .image-td {
-        width: fit-content;
-        margin-right: 0rem;
+    /*  */
+
+    .list-name {
+        font-size: 1rem;
+        text-transform: uppercase;
+        color: var(--white);
     }
 
-    .td-chip-flex {
-        margin-right: 0rem;
+    .mobile-only {
+        display: none;
     }
 
-    .td-text {
-        font-size: 65%;
-    }
-
-    .td-chips {
-        font-size: 50%;
-        padding: 0.25rem 0.5rem;
-        margin: 1rem 0rem;
-        border-width: 1px;
-    }
-
-    .td-volume-mobile {
+    .desktop-only {
         display: block;
     }
 
-    .td-volume {
+    .list-logo {
+        max-width: 50px;
+    }
+
+
+    .min {
+        min-width: 18%;
+        padding: 0rem 2rem;
+    }
+
+    .name2 {
+        font-size: 1.2rem;
+        color: var(--white);
+    }
+
+    .image-td {
+        max-width: fit-content;
+        margin-right: 2rem;
+    }
+
+    .td-flex {
+        display: flex;
+    }
+
+    .td-maxcontent {
+        max-width: fit-content;
+    }
+
+    .td-volume-mobile {
         display: none;
     }
-}
+
+    @media only screen and (max-width: 1100px) {
+        .list-logo {
+            width: 40px !important;
+        }
+
+        .td-text {
+            font-size: 80%;
+        }
+
+        .td-chips {
+            min-width: fit-content;
+        }
+
+        .td-chip-flex {
+            margin-right: 1rem;
+        }
+    }
+
+    .td1,
+    td2 {
+        width: 50px !important;
+        text-align: left !important;
+    }
+
+    @media only screen and (max-width: 800px) {
+        .list-logo {
+            width: 30px !important;
+        }
+
+        .td-chip-flex {
+            gap: 0.5rem;
+        }
+
+        .min {
+            min-width: fit-content;
+            padding: 0rem 1rem;
+        }
+
+        .td-icon,
+        .td-cap {
+            display: none !important;
+        }
+
+        .image-td {
+            width: fit-content;
+            margin-right: 0rem;
+        }
+
+        .td-chip-flex {
+            margin-right: 0rem;
+        }
+
+        .td-text {
+            font-size: 65%;
+        }
+
+        .td-chips {
+            font-size: 50%;
+            padding: 0.25rem 0.5rem;
+            margin: 1rem 0rem;
+            border-width: 1px;
+        }
+
+        .td-volume-mobile {
+            display: block;
+        }
+
+        .td-volume {
+            display: none;
+        }
+    }

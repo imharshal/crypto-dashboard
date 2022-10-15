@@ -2,8 +2,7 @@ import React from "react";
 import "./styles.css";
 import TrendingUpRoundedIcon from "@mui/icons-material/TrendingUpRounded";
 import TrendingDownRoundedIcon from "@mui/icons-material/TrendingDownRounded";
-
-function Grid({ coin }) {
+function CoinCard({ coin }) {
   const onGoingTrend = coin.price_change_percentage_24h > 0 ? "up" : "down";
   const uptrend = {
     sign: "+",
@@ -63,4 +62,4 @@ function Grid({ coin }) {
   );
 }
 
-export default Grid;
+export default CoinCard;

@@ -72,8 +72,8 @@ p {
 }
 
 td {
-  text-align: left !important;
-  width: 18%;
+  /* text-align: left !important;
+  width: max-content; */
 }
 
 .coin-page-div {

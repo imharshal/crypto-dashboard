@@ -54,8 +54,16 @@ function DashboardWrapper({ data }) {
               )}
             </div>
           </TabPanel>
-          <TabPanel value={1}>
+          <TabPanel value={1} sx={{ overflow: "auto" }}>
             <table className="list-table">
+              {/* <tr className="table-heading">
+                <th style={{ maxWidth: 100 }}>Logo</th>
+                <th className="min">Name & Symbol</th>
+                <th className="min">Change</th>
+                <th>Trend</th>
+                <th className="min">Market Cap</th>
+                <th>Volume</th>
+              </tr> */}
               {data.length == 0 ? (
                 <p>No Crypto Currencies Found</p>
               ) : (

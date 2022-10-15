@@ -13,8 +13,6 @@
     display: flex;
     width: 100%;
     align-items: center;
-    position: relative;
-    justify-content: flex-start;
 }
 
 .logo {
@@ -44,7 +42,7 @@
 }
 
 .change {
-    border: 1px solid var(--red);
+    border: 1px solid red;
     border-radius: 10px;
     display: inline;
     padding: 0.1rem .4rem;
@@ -71,12 +69,9 @@
 }
 
 .trending-icon {
-    position: absolute;
-    right: 0;
-    top: -10px;
-    font-size: 4rem !important;
+    font-size: 3rem !important;
     margin: 0;
-    margin-left: 1rem;
+    margin-left: 10px;
     opacity: .9;
 }
 
@@ -128,31 +123,14 @@
 
 @media only screen and (max-width: 600px) {
     .coin-box {
-        position: relative;
         min-width: 300px;
         align-items: center;
         padding: 2rem;
         /* margin: 0; */
     }
 
-    .trending-icon {
-        position: absolute;
-        top: 8%;
-        right: 8%;
-        font-size: 5rem !important;
-        margin: 0;
-        margin-left: 1rem;
-        opacity: .9;
-    }
-
     .logo-div {
-        display: flex;
-        position: static;
-        width: 100%;
-    }
-
-    .symbol {
-        font-size: 1rem;
+        justify-content: center;
     }
 
     .logo {
