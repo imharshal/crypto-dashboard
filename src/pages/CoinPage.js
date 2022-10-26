@@ -26,6 +26,10 @@ function CoinPage() {
         display: false,
       },
     },
+    interaction: {
+      mode: "index",
+      intersect: false,
+    },
   };
 
   const [chartData, setChartData] = useState({
@@ -105,7 +109,7 @@ function CoinPage() {
     });
 
     setLoadingChart(false);
-    setLoading(false);
+    // setLoading(false);
 
     setCoin({
       id: response_data.data.id,
@@ -118,6 +122,7 @@ function CoinPage() {
       current_price: response_data.data.market_data.current_price.usd,
       market_cap: response_data.data.market_data.market_cap.usd,
     });
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -170,8 +175,9 @@ function CoinPage() {
       ) : (
         <>
           <Header />
+
           <div className="coin-page-div">
-            <List coin={coin} />
+            {coin.id && <List coin={coin} delay={2} />}
           </div>
           <div className="coin-page-div">
             <p>

@@ -18,11 +18,8 @@ export default function DrawerMenu() {
           <a href="/">
             <p className="links">Home</p>
           </a>
-          <a href="/search">
-            <p className="links">Search</p>
-          </a>
-          <a href="/about-us">
-            <p className="links">About Us</p>
+          <a href="/compare">
+            <p className="links">Compare</p>
           </a>
           <a href="/dashboard">
             <p className="links">Dashboard</p>
