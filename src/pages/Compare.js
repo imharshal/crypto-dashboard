@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CompareGraph from "../components/compareComponents/CompareGraph";
-import SelectCryptos from "../components/compareComponents/SelectCryptos";
+import SelectCoins from "../components/compareComponents/SelectCoins";
 import Header from "../components/Header";
 
 function Compare() {
@@ -10,7 +10,7 @@ function Compare() {
   return (
     <div>
       <Header />
-      <SelectCryptos
+      <SelectCoins
         crypto1={crypto1}
         crypto2={crypto2}
         setCrypto1={setCrypto1}
