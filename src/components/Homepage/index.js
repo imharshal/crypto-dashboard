@@ -5,6 +5,7 @@ import gradient from "../../assets/gradient.png";
 import { RWebShare } from "react-web-share";
 import { ButtonOutlined, ButtonFilled } from "../Utilities/Buttons";
 import { motion } from "framer-motion";
+import { APP_URL } from "../../constants";
 function Landing() {
   return (
     <div className="flex-wrapper">
@@ -30,7 +31,7 @@ function Landing() {
           <RWebShare
             data={{
               text: "Checkout my crypto tracker made using React!",
-              url: "https://my-cryptotracker.com",
+              url: APP_URL,
               title: "Crypto Tracker",
             }}
             onClick={() => console.log("shared successfully!")}
