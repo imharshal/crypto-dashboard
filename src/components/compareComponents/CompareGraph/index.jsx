@@ -5,7 +5,7 @@ import { convertNumbers } from "../../../functions/convertNumbers";
 import { getDaysArray } from "../../../functions/getDaysArray";
 import { getPrices } from "../../../functions/getPrices";
 import ColorToggleButton from "../../CoinPageComponents/Toggle";
-import LineChart from "../../DashboardComponents/LineChart";
+import LineChart from "../../Dashboard/LineChart";
 import Loader from "../../Loader";
 import "./styles.css";
 function CompareGraph({ crypto1, crypto2, days, type, setType }) {
