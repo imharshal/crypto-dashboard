@@ -26,7 +26,7 @@ function Landing() {
         </p>
         <div className="button-div">
           <a href="/dashboard">
-            <ButtonFilled>Dashboard</ButtonFilled>{" "}
+            <ButtonFilled>Dashboard</ButtonFilled>
           </a>
           <RWebShare
             data={{

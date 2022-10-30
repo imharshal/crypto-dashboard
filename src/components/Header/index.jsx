@@ -1,14 +1,13 @@
-import React, { useState, ChangeEventHandler } from "react";
+import React, { useEffect, useState } from "react";
+import { IconButton } from "@mui/material";
+import { Brightness7, Brightness4 } from "@mui/icons-material";
 import { ButtonFilled } from "../Utilities/Buttons";
 import DrawerMenu from "./Drawer";
 import "./styles.css";
 function Header() {
   const [darkTheme, setDarkTheme] = useState(true);
-  // 1
   const setDark = () => {
-    // 2
     localStorage.setItem("theme", "dark");
-
     document.documentElement.setAttribute("data-theme", "dark");
   };
 
@@ -17,24 +16,24 @@ function Header() {
     document.documentElement.setAttribute("data-theme", "light");
   };
 
-  const storedTheme = localStorage.getItem("theme");
-
-  const prefersDark =
-    window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-  const defaultDark =
-    storedTheme === "dark" || (storedTheme === null && prefersDark);
-
-  if (defaultDark) {
-    setDark();
-  }
-
-  const toggleTheme = (e) => {
-    if (darkTheme) {
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme");
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const defaultDark = storedTheme === "dark" || prefersDark;
+    if (defaultDark) {
       setDark();
     } else {
       setLight();
+    }
+  }, []);
+
+  const toggleTheme = (e) => {
+    if (darkTheme) {
+      setLight();
+    } else {
+      setDark();
     }
     setDarkTheme(!darkTheme);
   };
@@ -45,8 +44,15 @@ function Header() {
           CryptoTracker<span style={{ color: "var(--blue)" }}>.</span>
         </h1>
       </a>
-      <button onClick={() => toggleTheme()}>Dark</button>
+
       <div className="links-flex">
+        <IconButton aria-label="open drawer" onClick={toggleTheme}>
+          {darkTheme ? (
+            <Brightness7 sx={{ color: "white" }} />
+          ) : (
+            <Brightness4 color="primary" />
+          )}
+        </IconButton>
         <a href="/">
           <p className="links">Home</p>
         </a>
@@ -63,7 +69,7 @@ function Header() {
         </a>
       </div>
       <div className="menu-div">
-        <DrawerMenu />
+        <DrawerMenu theme={darkTheme} toggleTheme={toggleTheme} />
       </div>
     </div>
   );

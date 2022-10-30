@@ -22,9 +22,14 @@
 .button-div {
     display: flex;
     justify-content: flex-start;
+    color: white;
     align-items: center;
     padding: 2rem 0rem;
     gap: 2rem;
+}
+
+.button-div a {
+    color: white;
 }
 
 .stroke:hover {

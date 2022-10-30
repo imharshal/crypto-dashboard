@@ -1,14 +1,19 @@
 import React, { useState } from "react";
+import CoinPageDesc from "../components/CoinPageComponents/CoinPageDesc";
 import CompareGraph from "../components/compareComponents/CompareGraph";
+import ListFlex from "../components/compareComponents/ListFlex";
 import SelectCoins from "../components/compareComponents/SelectCoins";
 import Header from "../components/Header";
 
-function Compare() {
-  const [crypto1, setCrypto1] = useState("");
-  const [crypto2, setCrypto2] = useState("");
+function ComparePage() {
+  const [crypto1, setCrypto1] = useState("bitcoin");
+  const [crypto2, setCrypto2] = useState("ethereum");
   const [days, setDays] = useState(30);
+  const [crypto1Desc, setCrypto1Desc] = useState("");
+  const [crypto2Desc, setCrypto2Desc] = useState("");
+  const [type, setType] = useState("prices");
   return (
-    <div>
+    <>
       <Header />
       <SelectCoins
         crypto1={crypto1}
@@ -18,9 +23,25 @@ function Compare() {
         days={days}
         setDays={setDays}
       />
-      <CompareGraph crypto1={crypto1} crypto2={crypto2} days={days} />
-    </div>
+      <ListFlex
+        crypto1={crypto1}
+        crypto2={crypto2}
+        setCrypto1Desc={setCrypto1Desc}
+        setCrypto2Desc={setCrypto2Desc}
+      />
+      <CompareGraph
+        crypto1={crypto1}
+        crypto2={crypto2}
+        days={days}
+        type={type}
+        setType={setType}
+      />
+      <div className="compare-desc">
+        <CoinPageDesc name={crypto1} desc={crypto1Desc} />
+        <CoinPageDesc name={crypto2} desc={crypto2Desc} />
+      </div>
+    </>
   );
 }
 
-export default Compare;
+export default ComparePage;

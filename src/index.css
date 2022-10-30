@@ -8,6 +8,21 @@
   --darkgrey: #1b1b1b;
   --green: #61c96f;
   --red: #f94141;
+  --white-button: #ffffff;
+}
+
+[data-theme="dark"] {
+  --white: #ffffff;
+  --black: #111;
+  --grey: #888;
+  --darkgrey: #1b1b1b;
+}
+
+[data-theme="light"] {
+  --white: #111;
+  --black: #fff;
+  --grey: #888;
+  --darkgrey: #f3f3f3;
 }
 
 html {
@@ -61,24 +76,6 @@ img {
   border-radius: 1rem;
 }
 
-[data-theme="light"] {
-  --white: #ffffff;
-  --black: #111;
-  --grey: #888;
-  --darkgrey: #1b1b1b;
-}
-
-[data-theme="dark"] {
-  --white: #111;
-  --black: #fff;
-  --grey: #888;
-  --darkgrey: #f3f3f3;
-}
-
-.white-content {
-  background: #e4e4e4;
-}
-
 h1,
 h2,
 h3,
@@ -90,13 +87,20 @@ p {
 }
 
 td {
-  /* text-align: left !important;
-  width: max-content; */
+  text-align: left !important;
+  width: 18%;
 }
 
 .coin-page-div {
   padding: 1rem;
   margin: 1rem 3rem;
+  background-color: var(--darkgrey);
+  border-radius: 1rem;
+}
+
+.coin-page-box {
+  padding: 1rem;
+  width: 50%;
   background-color: var(--darkgrey);
   border-radius: 1rem;
 }
@@ -108,6 +112,7 @@ td {
 .description h2 {
   margin-top: 0;
   margin-bottom: 1rem;
+  text-transform: capitalize;
 }
 
 .description a:hover {
@@ -121,12 +126,77 @@ td {
   border-color: var(--white) !important;
 }
 
+.top-button {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  border: 2px solid var(--blue);
+  border-radius: 50%;
+  color: var(--blue);
+  font-size: 2rem !important;
+  height: 3rem !important;
+  width: 3rem !important;
+  padding: 0.5rem;
+  cursor: pointer;
+  background-color: var(--darkgrey);
+}
+
+.toggle-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 2rem 0rem;
+}
+
+.cursor {
+  position: fixed;
+  border-radius: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  pointer-events: none;
+  left: -100px;
+  top: 50%;
+  background-color: var(--blue);
+  z-index: 10000;
+  border: 2px solid var(--blue);
+  height: 0.3rem;
+  width: 0.3rem;
+  transition: all 50ms ease-out;
+}
+
+.cursor-pointer {
+  position: fixed;
+  border-radius: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  pointer-events: none;
+  left: -100px;
+  top: 50%;
+  background-color: transparent;
+  z-index: 10000;
+  border: 2px solid var(--blue);
+  height: 2rem;
+  width: 2rem;
+  transition: all 350ms ease-out;
+}
+
 @media only screen and (max-width: 800px) {
+  .toggle-flex {
+    /* justify-content: flex-start; */
+    margin: 1rem 0rem;
+  }
+
   p {
     font-size: 80%;
   }
 
   .coin-page-div {
+    /* width: 95%; */
+    padding: 0.8rem;
+    margin: 0.8rem 1.5rem;
+    border-radius: 0.8rem;
+  }
+
+  .coin-page-box {
     padding: 0.8rem;
     margin: 0.8rem 1.5rem;
     border-radius: 0.8rem;
@@ -135,5 +205,23 @@ td {
   .description h2 {
     margin-top: 0;
     margin-bottom: 0.8rem;
+  }
+
+  .select-days {
+    max-width: 90px;
+  }
+
+  .top-button {
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  .cursor,
+  .cursor-pointer {
+    display: none;
+  }
+
+  .coin-page-box {
+    width: 95%;
   }
 }

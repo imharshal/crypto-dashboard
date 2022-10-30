@@ -58,7 +58,9 @@ export default function ColorToggleButton({
         labels: dates,
         datasets: [
           {
+            label: id,
             data: prices_data?.map((data) => data[1]),
+            borderColor: "#3a80e9",
           },
         ],
       });
@@ -77,6 +79,7 @@ export default function ColorToggleButton({
 
   return (
     <ToggleButtonGroup
+      size="small"
       color="primary"
       value={type}
       exclusive
@@ -100,23 +103,9 @@ export default function ColorToggleButton({
         },
       }}
     >
-      <ToggleButton value="prices" className="toggle-btn" sx={isMobile && sx}>
-        Price
-      </ToggleButton>
-      <ToggleButton
-        value="market_caps"
-        className="toggle-btn"
-        sx={isMobile && sx}
-      >
-        MKT Cap
-      </ToggleButton>
-      <ToggleButton
-        value="total_volumes"
-        className="toggle-btn"
-        sx={isMobile && sx}
-      >
-        Volume
-      </ToggleButton>
+      <ToggleButton value="prices">Price</ToggleButton>
+      <ToggleButton value="market_caps">MKT Cap</ToggleButton>
+      <ToggleButton value="total_volumes">Volume</ToggleButton>
     </ToggleButtonGroup>
   );
 }

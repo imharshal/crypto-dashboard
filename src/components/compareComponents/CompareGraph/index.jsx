@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { COIN_GECKO_URL } from "../../../constants";
+// import { COIN_GECKO_URL } from "../../../constants";
 import { convertNumbers } from "../../../functions/convertNumbers";
 import { getDaysArray } from "../../../functions/getDaysArray";
 import { getPrices } from "../../../functions/getPrices";
@@ -9,16 +9,17 @@ import LineChart from "../../Dashboard/LineChart";
 import Loader from "../../Loader";
 import "./styles.css";
 function CompareGraph({ crypto1, crypto2, days, type, setType }) {
-  const [prices1, setPrices1] = useState([]);
-  const [prices2, setPrices2] = useState([]);
-
   const today = new Date();
   const priorDate = new Date(new Date().setDate(today.getDate() - days));
 
   const options = {
     plugins: {
       legend: {
-        display: false,
+        display: true,
+      },
+      title: {
+        display: true,
+        text: `Comparison betweeen ${crypto1} and ${crypto2}`,
       },
     },
     responsive: true,
@@ -27,25 +28,19 @@ function CompareGraph({ crypto1, crypto2, days, type, setType }) {
       intersect: false,
     },
     stacked: false,
-    plugins: {
-      title: {
-        display: true,
-        text: `Comparison betweeen ${crypto1} and ${crypto2}`,
-      },
-    },
     scales: {
       y: {
         type: "linear",
         display: true,
         position: "left",
         ticks:
-          type == "market_caps"
+          type === "market_caps"
             ? {
                 callback: function (value) {
                   return "$" + convertNumbers(value);
                 },
               }
-            : type == "total_volumes"
+            : type === "total_volumes"
             ? {
                 callback: function (value) {
                   return convertNumbers(value);
@@ -65,13 +60,13 @@ function CompareGraph({ crypto1, crypto2, days, type, setType }) {
           drawOnChartArea: false,
         },
         ticks:
-          type == "market_caps"
+          type === "market_caps"
             ? {
                 callback: function (value) {
                   return "$" + convertNumbers(value);
                 },
               }
-            : type == "total_volumes"
+            : type === "total_volumes"
             ? {
                 callback: function (value) {
                   return convertNumbers(value);
@@ -93,13 +88,11 @@ function CompareGraph({ crypto1, crypto2, days, type, setType }) {
 
   useEffect(() => {
     getData();
-  }, [crypto1, crypto2, days]);
+  });
 
   const getData = async () => {
     const prices_data1 = await getPrices(crypto1, days, type);
-    setPrices1(prices_data1);
     const prices_data2 = await getPrices(crypto2, days, type);
-    setPrices2(prices_data2);
     var dates = getDaysArray(priorDate, today);
     setChartData({
       labels: dates,
@@ -130,7 +123,8 @@ function CompareGraph({ crypto1, crypto2, days, type, setType }) {
     });
   };
   return (
-    <div className="coin-page-div">
+    // <div className="coin-page-div">
+    <div className="coin-page">
       <div className="toggle-flex">
         <ColorToggleButton
           type={type}
@@ -144,6 +138,7 @@ function CompareGraph({ crypto1, crypto2, days, type, setType }) {
       </div>
       <LineChart chartData={chartData} options={options} />
     </div>
+    // </div>
   );
 }
 

@@ -6,19 +6,45 @@ import LineChart from "../components/Dashboard/LineChart";
 import Header from "../components/Header";
 import Loader from "../components/Loader";
 import List from "../components/Dashboard/List";
+import SelectDays from "../components/CoinPageComponents/SelectDays";
+
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import { getPrices } from "../functions/getPrices";
+
+import ColorToggleButton from "../components/CoinPageComponents/Toggle";
+import { convertNumbers } from "../functions/convertNumbers";
 
 function CoinPage() {
   const [searchParams] = useSearchParams();
-  console.log(searchParams);
 
   const [data, setData] = useState();
   //   const [dates, setDates] = useState([]);
+  const [type, setType] = useState("prices");
+
   const [loading, setLoading] = useState(true);
   const [loadingChart, setLoadingChart] = useState(true);
   const [coin, setCoin] = useState({});
   const [days, setDays] = useState(30);
+  const [chartData, setChartData] = useState();
+
+  const createChartData = (labels = [], data = []) => {
+    setChartData({
+      labels,
+      datasets: [
+        {
+          data,
+          // label: searchParams.toString(),
+          borderWidth: 2,
+          fill: false,
+          tension: 0.25,
+          backgroundColor: "#3a80e9",
+          borderColor: "#3a80e9",
+          pointRadius: 0,
+        },
+      ],
+    });
+  };
 
   const options = {
     plugins: {
@@ -30,24 +56,29 @@ function CoinPage() {
       mode: "index",
       intersect: false,
     },
-  };
-
-  const [chartData, setChartData] = useState({
-    labels: [],
-    datasets: [
-      {
-        data: [],
-        borderWidth: 2,
-        fill: false,
-        tension: 0.25,
-        backgroundColor: "white",
-        borderColor: "white",
-        pointRadius: 0,
+    scales: {
+      y: {
+        ticks:
+          type === "market_caps"
+            ? {
+                callback: function (value) {
+                  return "$" + convertNumbers(value);
+                },
+              }
+            : type === "total_volumes"
+            ? {
+                callback: function (value) {
+                  return convertNumbers(value);
+                },
+              }
+            : {
+                callback: function (value, index, ticks) {
+                  return "$" + value.toLocaleString();
+                },
+              },
       },
-    ],
-  });
-
-  //   const [prices, setPrices] = useState([]);
+    },
+  };
 
   const today = new Date();
   const priorDate = new Date(new Date().setDate(today.getDate() - days));
@@ -76,7 +107,7 @@ function CoinPage() {
     }
     setData(response_data.data);
 
-    console.log("ersponse data>>>", response_data.data);
+    // console.log("response data>>>", response_data.data);
 
     const API_URL2 = `https://api.coingecko.com/api/v3/coins/${response_data.data.id}/market_chart?vs_currency=usd&days=${days}&interval=daily`;
 
@@ -92,22 +123,8 @@ function CoinPage() {
     // setPrices(prices_data.data.prices);
 
     var dates_2 = getDaysArray(priorDate, today);
-
-    setChartData({
-      labels: dates_2,
-      datasets: [
-        {
-          data: prices_data?.data?.prices?.map((data) => data[1]),
-          borderWidth: 2,
-          fill: false,
-          tension: 0.25,
-          backgroundColor: "white",
-          borderColor: "white",
-          pointRadius: 0,
-        },
-      ],
-    });
-
+    let data = prices_data?.data?.prices?.map((data) => data[1]);
+    createChartData(dates_2, data);
     setLoadingChart(false);
     // setLoading(false);
 
@@ -151,21 +168,9 @@ function CoinPage() {
     );
 
     var dates_2 = getDaysArray(priorDate_2, today);
+    let temp_prices_data = prices_data?.data?.prices?.map((data) => data[1]);
 
-    setChartData({
-      labels: dates_2,
-      datasets: [
-        {
-          data: prices_data?.data?.prices?.map((data) => data[1]),
-          borderWidth: 2,
-          fill: false,
-          tension: 0.25,
-          backgroundColor: "white",
-          borderColor: "white",
-          pointRadius: 0,
-        },
-      ],
-    });
+    createChartData(dates_2, temp_prices_data);
   };
 
   return (
@@ -180,32 +185,21 @@ function CoinPage() {
             {coin.id && <List coin={coin} delay={2} />}
           </div>
           <div className="coin-page-div">
-            <p>
-              Price Change in the last
-              <span>
-                <Select
-                  value={days}
-                  onChange={handleChange}
-                  className="select-days"
-                  sx={{
-                    height: "2.5rem",
-                    color: "var(--white)",
-                    "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "var(--white)",
-                    },
-                    "& .MuiSvgIcon-root": {
-                      color: "var(--white)",
-                    },
-                  }}
-                >
-                  <MenuItem value={7}>7</MenuItem>
-                  <MenuItem value={30}>30</MenuItem>
-                  <MenuItem value={60}>60</MenuItem>
-                  <MenuItem value={90}>90</MenuItem>
-                </Select>
-              </span>
-              days
-            </p>
+            <div style={{ color: "var(--white)" }}>
+              Price Change in the last{" "}
+              <SelectDays days={days} handleChange={handleChange} />
+            </div>
+            <div className="toggle-flex">
+              <ColorToggleButton
+                type={type}
+                setType={setType}
+                days={days}
+                chartData={chartData}
+                setChartData={setChartData}
+                id={data.id}
+              />
+            </div>
+            x
             <LineChart chartData={chartData} options={options} />
           </div>
           <div className="coin-page-div description">

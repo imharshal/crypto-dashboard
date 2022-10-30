@@ -7,7 +7,7 @@
     padding: 0.75rem 2rem;
     min-width: 9rem;
     text-align: center;
-    color: var(--white);
+    color: white;
 }
 
 
@@ -17,6 +17,7 @@
 
 .button-outlined {
     background-color: transparent;
+    color: var(--white)
 }
 
 

@@ -35,7 +35,7 @@ function SelectCoins({
   useEffect(() => {
     axios.get(API_URL, { crossDomain: true }).then((response) => {
       if (response.data) {
-        console.log(response.data);
+        // console.log(response.data);
         setData(response.data);
       } else {
         console.log("error");

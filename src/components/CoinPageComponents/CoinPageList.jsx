@@ -1,12 +1,8 @@
 import React from "react";
-import List from "../../DashboardComponents/List";
+import List from "../Dashboard/List";
 
 function CoinPageList({ coin, delay }) {
-  return (
-    <div className="coin-page-div">
-      <List coin={coin} delay={delay} />
-    </div>
-  );
+  return <List coin={coin} delay={delay} />;
 }
 
 export default CoinPageList;
