@@ -11,7 +11,8 @@ function DashboardWrapper({ data }) {
   const [value, setValue] = React.useState(0);
 
   const style = {
-    color: "white",
+    // color: "white",
+    color: "var(--white)",
     width: "50vw",
     fontSize: "1.2rem",
     fontWeight: 600,
@@ -54,16 +55,16 @@ function DashboardWrapper({ data }) {
               )}
             </div>
           </TabPanel>
-          <TabPanel value={1} sx={{ overflow: "auto" }}>
+          <TabPanel value={1} sx={{ overflow: "auto", padding: 0 }}>
             <table className="list-table">
-              {/* <tr className="table-heading">
-                <th style={{ maxWidth: 100 }}>Logo</th>
-                <th className="min">Name & Symbol</th>
-                <th className="min">Change</th>
+              <tr>
+                {/* <th style={{ maxWidth: 150, width: 100 }}>Logo</th>
+                <th style={{ maxWidth: 150, width: 100 }}>Name & Symbol</th> */}
+                {/* <th>Change</th>
                 <th>Trend</th>
-                <th className="min">Market Cap</th>
-                <th>Volume</th>
-              </tr> */}
+                <th>Market Cap</th>
+                <th>Volume</th> */}
+              </tr>
               {data.length === 0 ? (
                 <p>No Crypto Currencies Found</p>
               ) : (
