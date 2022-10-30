@@ -1,16 +1,25 @@
 import { useState } from "react";
 import Drawer from "@mui/material/Drawer";
-import MenuIcon from "@mui/icons-material/Menu";
+import { Menu, Brightness4, Brightness7 } from "@mui/icons-material";
+// import  MenuIcon from "@mui/icons-material/MenuIcon";
 import { IconButton } from "@mui/material";
 import "./styles.css";
-export default function DrawerMenu() {
+export default function DrawerMenu({ theme, toggleTheme }) {
   const [open, setOpen] = useState(false);
 
   return (
     <div>
       <div className="menu-button">
+        <IconButton aria-label="open drawer" onClick={toggleTheme}>
+          {theme ? (
+            <Brightness4 color="primary" />
+          ) : (
+            <Brightness7 sx={{ color: "white" }} />
+          )}
+        </IconButton>
+
         <IconButton onClick={() => setOpen(true)}>
-          <MenuIcon style={{ color: "var(--white)" }} />
+          <Menu style={{ color: "var(--white)" }} />
         </IconButton>
       </div>
       <Drawer anchor={"right"} open={open} onClose={() => setOpen(false)}>
