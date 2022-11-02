@@ -50,7 +50,7 @@ function Header() {
           {darkTheme ? (
             <Brightness7 sx={{ color: "white" }} />
           ) : (
-            <Brightness4 color="primary" />
+            <Brightness4 color="dark" />
           )}
         </IconButton>
         <a href="/">
@@ -59,9 +59,9 @@ function Header() {
         <a href="/compare">
           <p className="links">Compare</p>
         </a>
-        <a href="/about-us">
+        {/* <a href="/about-us">
           <p className="links">About Us</p>
-        </a>
+        </a> */}
         <a href="/dashboard">
           <p className="links">
             <ButtonFilled>Dashboard </ButtonFilled>

@@ -12,9 +12,9 @@ export default function DrawerMenu({ theme, toggleTheme }) {
       <div className="menu-button">
         <IconButton aria-label="open drawer" onClick={toggleTheme}>
           {theme ? (
-            <Brightness4 color="primary" />
-          ) : (
             <Brightness7 sx={{ color: "white" }} />
+          ) : (
+            <Brightness4 color="dark" />
           )}
         </IconButton>
 
