@@ -5,8 +5,9 @@ import TrendingDownRoundedIcon from "@mui/icons-material/TrendingDownRounded";
 import { convertNumbers } from "../../../functions/convertNumbers";
 import { useNavigate } from "react-router-dom";
 import Tooltip from "@mui/material/Tooltip";
+import { motion } from "framer-motion";
 
-function List({ coin }) {
+function List({ coin, delay }) {
   const navigate = useNavigate();
 
   const onGoingTrend = coin.price_change_percentage_24h > 0 ? "up" : "down";
@@ -26,7 +27,19 @@ function List({ coin }) {
     navigate(`/coin?${coinId}`);
   };
   return (
-    <tr className="list-wrapper " onClick={() => showCoinPage(coin.id)}>
+    <motion.tr
+      onClick={() => showCoinPage(coin.id)}
+      className="list-wrapper"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{
+        type: "Spring",
+        stiffness: 100,
+        duration: 0.5,
+        delay: 0.15 + delay * 0.003,
+      }}
+    >
       <td className="image-td">
         <Tooltip title="Logo">
           <img src={coin.image} className="list-logo" alt="crypto-logo" />
@@ -69,7 +82,7 @@ function List({ coin }) {
 
       <td>
         <Tooltip title="Current Price">
-          <span className={`td-text ${trend.class}`}>
+          <span className={`td-text current-price ${trend.class}`}>
             ${coin.current_price.toLocaleString()}
           </span>
         </Tooltip>
@@ -101,7 +114,7 @@ function List({ coin }) {
           {convertNumbers(coin.total_volume)}
         </div>
       </td>
-    </tr>
+    </motion.tr>
   );
 }
 

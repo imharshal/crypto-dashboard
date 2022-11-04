@@ -7,6 +7,8 @@ import TabContext from "@mui/lab/TabContext";
 import Grid from "../Grid";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import List from "../List";
+import { motion } from "framer-motion";
+
 function DashboardWrapper({ data }) {
   const [value, setValue] = React.useState(0);
 
@@ -51,7 +53,7 @@ function DashboardWrapper({ data }) {
               {data.length === 0 ? (
                 <p>No Crypto Currencies Found</p>
               ) : (
-                data.map((coin, i) => <Grid coin={coin} key={i} />)
+                data.map((coin, i) => <Grid coin={coin} key={i} delay={i} />)
               )}
             </div>
           </TabPanel>
@@ -68,7 +70,7 @@ function DashboardWrapper({ data }) {
               {data.length === 0 ? (
                 <p>No Crypto Currencies Found</p>
               ) : (
-                data.map((coin, i) => <List coin={coin} key={i} />)
+                data.map((coin, i) => <List coin={coin} key={i} delay={i} />)
               )}
             </table>
           </TabPanel>

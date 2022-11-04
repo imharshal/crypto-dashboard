@@ -51,6 +51,10 @@ tr:hover {
     font-weight: 600;
 }
 
+.current-price {
+    opacity: .9
+}
+
 /*  */
 
 .list-name {

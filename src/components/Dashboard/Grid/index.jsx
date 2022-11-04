@@ -2,8 +2,9 @@ import React from "react";
 import "./styles.css";
 import TrendingUpRoundedIcon from "@mui/icons-material/TrendingUpRounded";
 import TrendingDownRoundedIcon from "@mui/icons-material/TrendingDownRounded";
+import { motion } from "framer-motion";
 
-function Grid({ coin }) {
+function Grid({ coin, delay }) {
   const onGoingTrend = coin.price_change_percentage_24h > 0 ? "up" : "down";
   const uptrend = {
     sign: "+",
@@ -17,7 +18,17 @@ function Grid({ coin }) {
   };
   const trend = onGoingTrend === "up" ? uptrend : downtrend;
   return (
-    <div className="coin-box">
+    <motion.div
+      className="coin-box"
+      initial={{ opacity: 0, x: 20, y: 30 }}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      viewport={{ once: true }}
+      transition={{
+        type: "tween",
+        duration: 0.3,
+        delay: delay * 0.01,
+      }}
+    >
       <a href={`/coin?${coin.id}`}>
         <div className="logo-div">
           <img src={coin.image} className="logo" alt="logo" />
@@ -59,7 +70,7 @@ function Grid({ coin }) {
           </div>
         </div>
       </a>
-    </div>
+    </motion.div>
   );
 }
 
