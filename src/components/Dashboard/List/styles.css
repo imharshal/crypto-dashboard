@@ -152,4 +152,13 @@ td2 {
     .desktop-only {
         display: none;
     }
+
+    .list-change {
+        border-radius: 10px;
+        display: inline;
+        padding: 0.2rem;
+        font-size: .4rem;
+        opacity: .9;
+        font-weight: 400;
+    }
 }

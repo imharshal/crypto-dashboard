@@ -4,6 +4,7 @@ import CompareGraph from "../components/compareComponents/CompareGraph";
 import ListFlex from "../components/compareComponents/ListFlex";
 import SelectCoins from "../components/compareComponents/SelectCoins";
 import Header from "../components/Header";
+import "./styles.css";
 
 function ComparePage() {
   const [crypto1, setCrypto1] = useState("bitcoin");

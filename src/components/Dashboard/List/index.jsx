@@ -4,6 +4,8 @@ import TrendingUpRoundedIcon from "@mui/icons-material/TrendingUpRounded";
 import TrendingDownRoundedIcon from "@mui/icons-material/TrendingDownRounded";
 import { convertNumbers } from "../../../functions/convertNumbers";
 import { useNavigate } from "react-router-dom";
+import Tooltip from "@mui/material/Tooltip";
+
 function List({ coin }) {
   const navigate = useNavigate();
 
@@ -26,43 +28,70 @@ function List({ coin }) {
   return (
     <tr className="list-wrapper " onClick={() => showCoinPage(coin.id)}>
       <td className="image-td">
-        <img src={coin.image} className="list-logo" alt="crypto-logo" />
+        <Tooltip title="Logo">
+          <img src={coin.image} className="list-logo" alt="crypto-logo" />
+        </Tooltip>
       </td>
 
       <td>
-        <p className="symbol td-text">{coin.symbol}-USD</p>
-        <p className="list-name" style={{ marginBottom: 0 }}>
-          {coin.name}
-        </p>
+        <Tooltip title="Symbol">
+          <p className="symbol td-text">{coin.symbol}-USD</p>
+        </Tooltip>
+        <Tooltip title="Name">
+          <p className="list-name" style={{ marginBottom: 0 }}>
+            {coin.name}
+          </p>
+        </Tooltip>
       </td>
-      <td style={{ width: 100, minWidth: 80 }}>
-        <div className={`list-change ${trend.class} td-text`}>
-          {trend.sign + coin.price_change_percentage_24h.toFixed(2) + " %"}
-        </div>
+      <td>
+        <Tooltip title="Price Change">
+          <div className={`list-change ${trend.class} td-text`}>
+            {trend.sign + coin.price_change_percentage_24h.toFixed(2) + " %"}
+          </div>
+        </Tooltip>
       </td>
-      <td style={{ width: 80 }} className="desktop-only">
-        {onGoingTrend === "up" ? (
-          <TrendingUpRoundedIcon
-            fontSize="large"
-            className={`list-trending-icon ${trend.class}`}
-          />
-        ) : (
-          <TrendingDownRoundedIcon
-            fontSize="large"
-            className={`list-trending-icon ${trend.class}`}
-          />
-        )}
+      <td style={{ textAlign: "left" }} className="desktop-only">
+        <Tooltip title="Trend Direction">
+          {onGoingTrend === "up" ? (
+            <TrendingUpRoundedIcon
+              fontSize="large"
+              className={`list-trending-icon ${trend.class}`}
+            />
+          ) : (
+            <TrendingDownRoundedIcon
+              fontSize="large"
+              className={`list-trending-icon ${trend.class}`}
+            />
+          )}
+        </Tooltip>
       </td>
-      <td style={{ width: "20%", alignItem: "center" }}>
-        <div className="list-badge desktop-only" data-title="Market cap">
+      {/* ------------- */}
+
+      <td>
+        <Tooltip title="Current Price">
+          <span className={`td-text ${trend.class}`}>
+            ${coin.current_price.toLocaleString()}
+          </span>
+        </Tooltip>
+      </td>
+
+      {/* --------- */}
+      <td>
+        <div
+          className="list-badge desktop-only td-text"
+          data-title="Market cap"
+        >
           ${coin.market_cap.toLocaleString()}
         </div>
         <div className="list-badge mobile-only td-text" data-title="Market cap">
           ${convertNumbers(coin.market_cap)}
         </div>
       </td>
-      <td>
-        <div className="list-badge desktop-only" data-title="Total Volume">
+      <td className="desktop-only">
+        <div
+          className="list-badge desktop-only td-text"
+          data-title="Total Volume"
+        >
           {coin.total_volume.toLocaleString()}
         </div>
         <div

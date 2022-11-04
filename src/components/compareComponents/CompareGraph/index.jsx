@@ -136,7 +136,9 @@ function CompareGraph({ crypto1, crypto2, days, type, setType }) {
           id2={crypto2}
         />
       </div>
-      <LineChart chartData={chartData} options={options} />
+      <div className="grph-wrapper">
+        <LineChart chartData={chartData} options={options} />
+      </div>
     </div>
     // </div>
   );

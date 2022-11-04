@@ -29,3 +29,14 @@
 .search-input input:focus {
     outline: none;
 }
+
+@media only screen and (max-width: 800px) {
+    .search-wrapper {
+        width: 100%;
+        padding: 1rem 1.5rem;
+    }
+
+    .search-input {
+        width: 100%;
+    }
+}

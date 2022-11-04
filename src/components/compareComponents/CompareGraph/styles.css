@@ -1,9 +1,9 @@
 .grph-wrapper {
-    padding: 1rem 3rem;
+    padding: .5rem 3rem;
 }
 
 @media only screen and (max-width: 800px) {
     .grph-wrapper {
-        margin: 0.5rem 1.5rem;
+        padding: 1rem .5rem;
     }
 }

@@ -100,8 +100,10 @@ td {
 
 .coin-page-box {
   padding: 1rem;
-  width: 50%;
+  margin: 1rem;
+  /* width: 45%; */
   background-color: var(--darkgrey);
+  box-shadow: 0 0 3px 0 var(--grey);
   border-radius: 1rem;
 }
 
@@ -118,6 +120,10 @@ td {
 .description a:hover {
   color: var(--blue);
   transition: all 0.3s;
+}
+
+.description p {
+  color: var(--grey)
 }
 
 .select-days {
@@ -200,6 +206,7 @@ td {
     padding: 0.8rem;
     margin: 0.8rem 1.5rem;
     border-radius: 0.8rem;
+    width: 95%;
   }
 
   .description h2 {
@@ -221,7 +228,7 @@ td {
     display: none;
   }
 
-  .coin-page-box {
+  /* .coin-page-box {
     width: 95%;
-  }
+  } */
 }
