@@ -30,6 +30,9 @@ export default function DrawerMenu({ theme, toggleTheme }) {
           <a href="/compare">
             <p className="links">Compare</p>
           </a>
+          <a href="/chart">
+            <p className="links">Chart+</p>
+          </a>
           <a href="/dashboard">
             <p className="links">Dashboard</p>
           </a>

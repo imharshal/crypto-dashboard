@@ -5,6 +5,7 @@ import Dashboard from "./pages/Dashboard";
 import Search from "./pages/Search";
 import CoinPage from "./pages/CoinPage";
 import Compare from "./pages/Compare";
+import DetailedChart from "./pages/DetailedChart";
 
 function App() {
   const setInitialTheme = `
@@ -29,6 +30,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/search" element={<Search />} />
           <Route path="/coin" element={<CoinPage />} />
+          <Route path="/chart" element={<DetailedChart />} />
           <Route path="/compare" element={<Compare />} />
         </Routes>
       </BrowserRouter>

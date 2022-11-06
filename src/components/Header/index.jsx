@@ -1,11 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { IconButton } from "@mui/material";
 import { Brightness7, Brightness4 } from "@mui/icons-material";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
 import { ButtonFilled } from "../Utilities/Buttons";
 import DrawerMenu from "./Drawer";
 import "./styles.css";
 function Header() {
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
   const [darkTheme, setDarkTheme] = useState(true);
+
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: prefersDarkMode || darkTheme ? "dark" : "light",
+        },
+      }),
+    [prefersDarkMode, darkTheme]
+  );
+
   const setDark = () => {
     localStorage.setItem("theme", "dark");
     document.documentElement.setAttribute("data-theme", "dark");
@@ -59,9 +74,9 @@ function Header() {
         <a href="/compare">
           <p className="links">Compare</p>
         </a>
-        {/* <a href="/about-us">
-          <p className="links">About Us</p>
-        </a> */}
+        <a href="/chart">
+          <p className="links">Chart+</p>
+        </a>
         <a href="/dashboard">
           <p className="links">
             <ButtonFilled>Dashboard </ButtonFilled>
