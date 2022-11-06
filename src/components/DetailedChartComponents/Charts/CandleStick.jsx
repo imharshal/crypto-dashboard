@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import Chart from "react-apexcharts";
 import { Box } from "@mui/material";
 
-function CandleStick({ coinName, data, type }) {
+function CandleStick({ coin, data, type }) {
   const options = {
     chart: {
       type: type,
@@ -15,7 +15,6 @@ function CandleStick({ coinName, data, type }) {
     },
 
     title: {
-      text: coinName,
       align: "left",
     },
     xaxis: {
@@ -35,7 +34,7 @@ function CandleStick({ coinName, data, type }) {
         breakpoint: 500,
         options: {
           chart: {
-            height: 750,
+            height: "680",
           },
         },
       },
@@ -43,7 +42,7 @@ function CandleStick({ coinName, data, type }) {
         breakpoint: 2000,
         options: {
           chart: {
-            height: "650",
+            height: "640",
           },
         },
       },
@@ -52,6 +51,21 @@ function CandleStick({ coinName, data, type }) {
 
   return (
     <Box id="chart" sx={{ padding: 1 }}>
+      {coin && (
+        <span
+          className=" mobile-only"
+          style={{
+            border: "1px solid",
+            borderRadius: 3,
+            padding: "4px 12px",
+            margin: "4%",
+            width: "max-content",
+            fontSize: "90%",
+          }}
+        >
+          {coin.id + " - " + coin.name}
+        </span>
+      )}
       <Chart options={options} series={data} type={type} />
     </Box>
   );

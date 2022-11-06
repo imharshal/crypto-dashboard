@@ -17,6 +17,16 @@
     box-shadow: 0 0 3px 0 var(--white);
 }
 
+.coin-box-squared {
+    background-color: var(--darkgrey);
+    /* display: flex; */
+    padding: 1rem;
+    margin: 5;
+    transition: .3s;
+    border-radius: .3em;
+    box-shadow: 0 0 20px 0 var(--darkgrey) inset;
+}
+
 .logo-div {
     display: flex;
     width: 100%;
@@ -143,7 +153,15 @@
         /* margin: 0; */
     }
 
-    .trending-icon {
+    .coin-box-squared {
+        padding: 1rem;
+    }
+
+    /* .coin-box-squared .trending-icon {
+        position: relative;
+    } */
+
+    .coin-box .trending-icon {
         position: absolute;
         top: 8%;
         right: 8%;
@@ -153,17 +171,17 @@
         opacity: .9;
     }
 
-    .logo-div {
+    .coin-box .logo-div {
         display: flex;
         position: static;
         width: 100%;
     }
 
-    .symbol {
+    .coin-box .symbol {
         font-size: 1rem;
     }
 
-    .logo {
+    .coin-box .logo {
         max-width: 50px;
     }
 

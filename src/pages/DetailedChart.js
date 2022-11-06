@@ -4,21 +4,22 @@ import ChartLayout from "../components/DetailedChartComponents/ChartLayout";
 import { ChartContext, ColorModeContext } from "../AppContext";
 import { getOHLCData } from "../functions/getOHLCData";
 export default function DetailedChart() {
-  const [mode, setMode] = React.useState("light");
+  const [mode, setMode] = React.useState("dark");
   const [options, setOptions] = React.useState({
-    coin: "bitcoin",
+    coinid: "bitcoin",
     duration: 7,
     chartType: "candlestick",
     data: [],
   });
-  const updateOptions = ({ coin, duration, chartType }) => {
-    // setOptions({
-    //   coin,
-    //   duration,
-    //   chartType,
-    // });
+  const updateOptions = ({ coin, coinid, duration, chartType }) => {
+    setOptions({
+      coinid,
+      coin,
+      duration,
+      chartType,
+    });
     // console.log(chartType);
-    getOHLCData(coin, duration).then((data) => {
+    getOHLCData(coinid, duration).then((data) => {
       if (chartType === "line") {
         let series = [];
         data[0]["data"].forEach(function (a, i) {
@@ -26,9 +27,15 @@ export default function DetailedChart() {
         });
         console.log(series);
         // console.log(data[0]["data"]);
-        setOptions({ coin, duration, chartType, data: [{ data: series }] });
+        setOptions({
+          coin,
+          coinid,
+          duration,
+          chartType,
+          data: [{ data: series }],
+        });
       } else {
-        setOptions({ coin, duration, chartType, data });
+        setOptions({ coin, coinid, duration, chartType, data });
       }
     });
 
@@ -43,7 +50,11 @@ export default function DetailedChart() {
     }),
     []
   );
-
+  useEffect(() => {
+    window.localStorage.setItem("theme", mode);
+    console.log(window.localStorage.getItem("theme"));
+    document.documentElement.setAttribute("data-theme", mode);
+  }, [mode]);
   useEffect(() => {
     updateOptions(options);
   }, []);
