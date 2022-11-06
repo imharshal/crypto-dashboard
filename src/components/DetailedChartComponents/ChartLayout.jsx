@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import Box from "@mui/material/Box";
-import ChartWrapper from "./ChartWrapper";
 import CoinList from "./CoinListComponents/CoinList";
-
+import ChartOptions from "./ChartOptions";
+import CandleStick from "./Charts/CandleStick";
+import { useContext } from "react";
+import { ChartContext } from "../../AppContext";
 export default function ChartLayout() {
+  const { options, updateOptions } = useContext(ChartContext);
+  const [open, setOpen] = useState(true);
+  const handleListToggle = () => {
+    setOpen(!open);
+  };
+  const handleListClose = () => {
+    setOpen(false);
+  };
   return (
     <Box
       sx={{
@@ -14,7 +24,24 @@ export default function ChartLayout() {
         color: "text.primary",
       }}
     >
-      <ChartWrapper />
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          width: "90vw",
+          flexGrow: 2,
+          height: "100vh",
+          bgcolor: "background.default",
+          color: "text.primary",
+        }}
+      >
+        <ChartOptions handleListClose={handleListClose} open={open} />
+        <CandleStick
+          data={options.data}
+          coinName="bitcoin"
+          type={options.chartType}
+        />
+      </Box>
       <Box
         sx={{
           display: { xs: "none", md: "flex" },
@@ -23,9 +50,8 @@ export default function ChartLayout() {
           height: "100vh",
           bgcolor: "background.default",
           color: "text.primary",
-          border: "1px solid blue",
-
-          p: 3,
+          p: 1,
+          borderLeft: 2,
         }}
       >
         <CoinList />

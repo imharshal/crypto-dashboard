@@ -28,14 +28,13 @@ function ChartOptions() {
     <Box
       sx={{
         display: "flex",
-        width: "100%",
+        // width: "95?%",
         alignItems: "center",
         justifyContent: "start",
         bgcolor: "background.default",
         color: "text.primary",
-        border: "1px solid black",
-
-        p: 1,
+        m: 1,
+        // border: "2px solid var(--grey)",
       }}
     >
       <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
@@ -68,10 +67,21 @@ function ChartOptions() {
         >
           <MenuItem value="candlestick">Candlestick</MenuItem>
           <MenuItem value="line">Line</MenuItem>
+          <MenuItem value="area">Area</MenuItem>
         </Select>
       </FormControl>
       <IconButton
         sx={{ ml: 1 }}
+        onClick={colorMode.toggleColorMode}
+        color="inherit"
+      >
+        {theme.palette.mode === "dark" ? <Brightness7 /> : <Brightness4 />}
+      </IconButton>
+      <IconButton
+        sx={{
+          ml: 1,
+          display: { sm: "block", xs: "block", md: "none", lg: "none" },
+        }}
         onClick={colorMode.toggleColorMode}
         color="inherit"
       >

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import MyApp from "../components/DetailedChartComponents/ChartLayout";
+import ChartLayout from "../components/DetailedChartComponents/ChartLayout";
 import { ChartContext, ColorModeContext } from "../AppContext";
 import { getOHLCData } from "../functions/getOHLCData";
 export default function DetailedChart() {
@@ -12,14 +12,26 @@ export default function DetailedChart() {
     data: [],
   });
   const updateOptions = ({ coin, duration, chartType }) => {
-    setOptions({
-      coin,
-      duration,
-      chartType,
-    });
+    // setOptions({
+    //   coin,
+    //   duration,
+    //   chartType,
+    // });
+    // console.log(chartType);
     getOHLCData(coin, duration).then((data) => {
-      setOptions((options) => ({ ...options, data }));
+      if (chartType === "line") {
+        let series = [];
+        data[0]["data"].forEach(function (a, i) {
+          series.push([a[0], a[4]]);
+        });
+        console.log(series);
+        // console.log(data[0]["data"]);
+        setOptions({ coin, duration, chartType, data: [{ data: series }] });
+      } else {
+        setOptions({ coin, duration, chartType, data });
+      }
     });
+
     // console.log(options);
   };
 
@@ -33,11 +45,8 @@ export default function DetailedChart() {
   );
 
   useEffect(() => {
-    console.log(options.coin);
-    getOHLCData(options.coin, options.duration).then((data) => {
-      setOptions((options) => ({ ...options, data }));
-    });
-  }, [options.coin, options.chartType, options.duration]);
+    updateOptions(options);
+  }, []);
   const theme = React.useMemo(
     () =>
       createTheme({
@@ -52,7 +61,7 @@ export default function DetailedChart() {
     <ChartContext.Provider value={{ options, updateOptions }}>
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
-          <MyApp />
+          <ChartLayout />
         </ThemeProvider>
       </ColorModeContext.Provider>
     </ChartContext.Provider>

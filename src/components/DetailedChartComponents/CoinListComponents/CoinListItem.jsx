@@ -1,10 +1,14 @@
 import React from "react";
-import { ListItem, ListItemText } from "@mui/material";
-function CoinListItem({ coinName, coinPrice }) {
+import { ListItem, ListItemIcon, ListItemText } from "@mui/material";
+function CoinListItem({ coin }) {
   return (
-    <ListItem>
-      <ListItemText primary={coinName} />
-      <ListItemText primary={coinPrice} />
+    <ListItem sx={{ fontWeight: "bolder" }}>
+      <ListItemIcon>
+        <img src={coin.image} className="list-logo" alt="crypto-logo" />
+      </ListItemIcon>
+      <ListItemText primary={coin.name} />
+      <ListItemText primary={coin.current_price} />
+      <ListItemText primary="Price" />
     </ListItem>
   );
 }

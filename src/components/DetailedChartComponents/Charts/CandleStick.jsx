@@ -1,14 +1,11 @@
 import React, { useContext } from "react";
 import Chart from "react-apexcharts";
 import { Box } from "@mui/material";
-import { ColorModeContext } from "../../../AppContext";
 
-function CandleStick({ coinName, data }) {
-  const { colormode, toggleColorMode } = useContext(ColorModeContext);
+function CandleStick({ coinName, data, type }) {
   const options = {
     chart: {
-      type: "candlestick",
-      foreColor: "var(--grey)",
+      type: type,
     },
     tooltip: {
       theme: "dark",
@@ -29,6 +26,10 @@ function CandleStick({ coinName, data }) {
         enabled: true,
       },
     },
+    stroke: {
+      width: 2,
+    },
+    colors: ["#2E93fA"],
     responsive: [
       {
         breakpoint: 500,
@@ -39,10 +40,10 @@ function CandleStick({ coinName, data }) {
         },
       },
       {
-        breakpoint: 1000,
+        breakpoint: 2000,
         options: {
           chart: {
-            height: "300",
+            height: "650",
           },
         },
       },
@@ -51,7 +52,7 @@ function CandleStick({ coinName, data }) {
 
   return (
     <Box id="chart" sx={{ padding: 1 }}>
-      <Chart options={options} series={data} type="line" />
+      <Chart options={options} series={data} type={type} />
     </Box>
   );
 }
