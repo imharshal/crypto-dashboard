@@ -21,12 +21,12 @@ function ChartOptions({ handleListClose }) {
   const updateDuration = (d) => {
     setDuration(d);
     updateOptions({ ...options, duration: d });
-    console.log(d);
+    // console.log(d);
   };
   const updateChartType = (ct) => {
     setChartType(ct);
     updateOptions({ ...options, chartType: ct });
-    console.log(ct);
+    // console.log(ct);
   };
   return (
     <Box

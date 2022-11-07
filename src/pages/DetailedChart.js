@@ -25,7 +25,6 @@ export default function DetailedChart() {
         data[0]["data"].forEach(function (a, i) {
           series.push([a[0], a[4]]);
         });
-        console.log(series);
         // console.log(data[0]["data"]);
         setOptions({
           coin,
@@ -52,7 +51,6 @@ export default function DetailedChart() {
   );
   useEffect(() => {
     window.localStorage.setItem("theme", mode);
-    console.log(window.localStorage.getItem("theme"));
     document.documentElement.setAttribute("data-theme", mode);
   }, [mode]);
   useEffect(() => {

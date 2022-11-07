@@ -43,7 +43,7 @@ export default function CoinList({ open, handleListClose }) {
     axios.get(API_URL, { crossDomain: true }).then((response) => {
       if (response.data) {
         setData(response.data);
-        console.log(response.data);
+        // console.log(response.data);
         // setLoading(false);
       } else {
         console.log("error");
